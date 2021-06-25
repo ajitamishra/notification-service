@@ -1,0 +1,53 @@
+.wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: -10px;
+    padding-left: 10px;    
+}
+.logoWrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.logo {
+    height: 25px;
+    width: 25px;
+    margin-right: 16px; 
+  }
+.iconWrapper {
+    height: 100%;
+    margin-top: -10px;
+    cursor: pointer;
+  }  
+.text{
+      height:80px;
+      padding: 8px;
+      font-size: 15px;
+      padding-left: 10px;
+      font-weight: 100;
+  }
+.btn{
+    margin-left: 6px;
+    margin-top: 2px;
+  }
+.title{
+    font-size: 18px;
+    font-weight: 600;
+}
+.btn-appointment{
+    padding: 12px;
+    border-radius: 5px;
+    margin-right: 12px;
+    background-color: rgb(233, 229, 229);
+    border:none;
+    cursor: pointer;
+
+}
+button:hover{
+  /* background-color: rgb(247, 186, 55); */
+  background-color: #FB5098;
+  color:white;
+  font-weight: 100;
+}
+  

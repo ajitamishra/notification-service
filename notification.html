@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajita</title>
+    <link href="notification.css" rel="stylesheet /">
+    <link href="font.css" rel="stylesheet" type="text/css" />
+    <link href="icons.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <body ondragstart="return false;" ondrop="return false;" ondragover="return false;">
+      <audio autoplay>
+        <source id="sound" src="sound.mp3" type="audio/mpeg">
+      </audio>  
+      <div class="wrapper">
+        <div class="logoWrapper" >
+          <img id="img" class="logo" src="./notification-icon.png" />
+          <p class="title" id="title"></p>
+        </div>
+        
+        <div id="icon-wrapper" class="iconWrapper" onclick="onCloseWindow()">  
+            <i class="material-icons icon" id="close-icon">close</i>
+          </div>
+        </div>
+        
+            <div id="message" class="text">
+             
+            </div>       
+        <div class="btn">
+            <button class="btn-appointment" id="btn-appointment" onclick="openApplication()">View Notification</button>
+            <button class="btn-appointment" onclick="onCloseWindow()">close</button>
+        </div>
+        <script>
+           let timestamp = new Date().getTime();
+           let isActive = false;
+           let notificationType=null;
+           let winId;
+
+          const { ipcRenderer } = window.require('electron');
+         
+          //when user manually closes window
+
+          const onCloseWindow=()=>{
+            ipcRenderer.send('manuallycloseNotificationWindow',winId);
+            }
+
+          //getting notification attributes from main process
+          let notification={};
+          ipcRenderer.on('notify',(event,arg)=>{
+            console.log('arg',arg);
+            notification=arg;
+            winId=notification.winId;
+          notificationType=notification.title.split(" ")[1];
+            document.getElementById('title').textContent= notification.title;
+          document.getElementById('message').textContent= notification.Message;
+          document.getElementById('btn-appointment').textContent= `View ${notificationType}`;
+          });
+           
+         
+          //automatically close Notification after 10s of its arrival
+
+          setTimeout(()=>{
+            ipcRenderer.send('closeNotificationWindow');
+          },10000)
+        
+          const openApplication = () => {
+            // sending notificationType to main process so that it can send to customNotificatio
+             const viewNotification={notificationType,winId};
+            //  alert(viewNotification.notificationType)
+              ipcRenderer.send('viewNotification',viewNotification);
+                };
+        </script>     
+</body>
+</html>
