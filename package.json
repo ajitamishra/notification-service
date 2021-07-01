@@ -1,11 +1,19 @@
 {
-  "name": "notification-service",
-  "version": "1.0.0",
-  "description": "Simple notification service",
+  "name": "notify-v1",
+  "version": "1.0.1",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ajitamishra/notification-service.git"
+  },
   "author": "Ajita Mishra",
-  "license": "ISC"
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ajitamishra/notification-service/issues"
+  },
+  "homepage": "https://github.com/ajitamishra/notification-service#readme"
 }
